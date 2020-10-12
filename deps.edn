@@ -1,0 +1,32 @@
+{:paths [ "src" ]
+ :deps  {org.clojure/clojure       {:mvn/version "1.10.1"}
+         manifold/manifold         {:mvn/version "0.1.9-alpha3"}
+         org.clojure/core.async    {:mvn/version "1.3.610"}
+         byte-streams/byte-streams {:mvn/version "0.2.4"}
+         gloss/gloss               {:mvn/version "0.2.6"}
+         aleph/aleph               {:mvn/version "0.4.7-alpha5"}
+         com.taoensso/nippy        {:mvn/version "3.0.0"}
+         pandect/pandect           {:mvn/version "0.6.1"}
+         kovacnica/clojure.network.ip {:mvn/version "0.1.3"}
+         org.clojure/core.match    {:mvn/version "1.0.0"}
+         org.clojure/tools.deps.alpha {:mvn/version "0.9.810"
+                                       :exclusions  [org.slf4j/slf4j-nop]
+                                       }
+         org.slf4j/slf4j-api {:mvn/version "1.7.30"}
+        ch.qos.logback/logback-classic {:mvn/version "1.2.3"}
+         }
+  :aliases {:dev
+            {:extra-paths [ "dev" ]
+             :replace-deps
+               {org.clojure/tools.namespace {:mvn/version "1.0.0"}
+                fipp/fipp {:mvn/version "0.6.23"}
+                }
+              :main-opts ["-m" "voip.core.cli"]
+             }
+            :graph {:replace-deps
+                     {org.clojure/tools.deps.graph {:mvn/version "1.0.46"}}
+                    :main-opts ["-m" "clojure.tools.deps.graph"]
+                    }
+            }
+
+}
