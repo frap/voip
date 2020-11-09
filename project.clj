@@ -19,4 +19,7 @@
   :main voip.core.cli
 
   :profiles {:dev {:dependencies [[org.clojure/tools.namespace "1.0.0"]]
-                   :source-paths ["dev"]}})
+                   :source-paths ["dev"]}
+             :kaocha {:dependencies [[lambdaisland/kaocha "1.0.700"]]}
+             }
+  :aliases {"kaocha" ["with-profile" "+kaocha" "run" "-m" "kaocha.runner"]})

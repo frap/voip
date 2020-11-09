@@ -1,7 +1,7 @@
 (ns voip.core.client
-  (:require [manifold.stream :as s]
-            [aleph.udp :as udp]
+  (:require [aleph.udp :as udp]
             [aleph.tcp :as tcp]
+        ;;    [manifold.stream :as s]
             [voip.core.util :as util]
             [voip.core.comms :as comms]
             [voip.core.state :as state]
@@ -11,8 +11,6 @@
             [clojure.string :as str]
             [voip.core.audio :as audio])
   (:import (java.net InetAddress)))
-
-
 
 (defn init [server-ip server-port port hostname]
   (let [ip (.getHostAddress (InetAddress/getLocalHost))]
@@ -27,14 +25,10 @@
     (util/write (:server-stream @client) msg)
     (catch Exception e)))
 
-
-
 (defn update-state
   "Update the local state and handle relevant changes"
   [client state]
   (swap! client #(assoc % :state state)))
-
-
 
 (defn msg-handler [client stream msg]
   (match (:type msg)

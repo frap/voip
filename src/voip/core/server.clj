@@ -6,7 +6,7 @@
             [voip.core.state :as state]
             [manifold.stream :as s]))
 
-(defn init [port]
+(defn init [{:keys [port]}]
   "Initialise the server kernel object"
   (atom {:kind         "server"
          :port         (read-string port)
