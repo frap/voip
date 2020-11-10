@@ -1,8 +1,9 @@
 (ns voip.core.util
-  (:require [manifold.stream :as s]
-            [taoensso.nippy :as nippy]
-            [gloss.core :as gloss]
-            [gloss.io :as gloss.io])
+  (:require 
+     [taoensso.nippy :as nippy]
+     [gloss.core :as gloss]
+     [gloss.io :as gloss.io]
+     [manifold.stream :as s])
   (:import (java.net ServerSocket DatagramSocket)))
 
 (defn prompt [handle prompt-str]

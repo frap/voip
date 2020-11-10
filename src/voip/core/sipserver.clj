@@ -67,13 +67,13 @@
       (recur a new-val))))
 
 (defn start-statsd-server
-  []
+  [config]
   (let [accumulator   (atom {})
-        server-socket @(udp/socket {:port server-port})
+        server-socket @(udp/socket {:port config})
         ;; Once a second, take all the values that have accumulated, `put!` them out, and
         ;; clear the accumulator.
         metric-stream (s/periodically 10000 #(get-and-set! accumulator {}))
-        _ (log/info :stats-server/starting {:port server-port })]
+        _ (log/info :stats-server/starting {:port config })]
 
     ;; Listens on a socket, parses each incoming message, and increments the appropriate metric.
     (->> server-socket

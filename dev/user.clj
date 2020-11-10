@@ -5,7 +5,7 @@
 (defn start
   "Load and switch to the 'dev' namespace."
   []
-  ;(require 'dev)
+  (require 'dev)
   (in-ns 'dev)
   (stest/instrument))
 

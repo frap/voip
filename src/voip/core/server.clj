@@ -13,14 +13,12 @@
          :peer-streams {}
          :state        (state/make)}))
 
-
 (defn propogate-state
   "Propogate state to all peers"
   [server]
   (let [state (:state @server)]
     (doseq [[_ stream] (:peer-streams @server)]
       (util/write stream (comms/message 'state {:state state})))))
-
 
 (defn update-state
   "Update the server state and propogate the results"
@@ -107,6 +105,5 @@
 (defn stop! [this]
   "Stop the server services"
   (.close (:tcp-server @this)))
-
 
 
