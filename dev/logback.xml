@@ -15,7 +15,7 @@
     <!-- Default encoder is ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
     <encoder>
       <!-- two-line layout suitable for a terminal -->
-      <pattern>%date{HH:mm:ss.SSS} %highlight(%-5level) %cyan(%logger{5}@[%-4.30thread])%n%yellow(%msg%n)</pattern>
+      <pattern>%date{HH:mm:ss.SSS} %highlight(%-5level)%cyan(%logger{5}@[%-4.30thread])%n%yellow(%msg%n)</pattern>
       <charset>UTF-8</charset>
     </encoder>
   </appender>
@@ -92,7 +92,7 @@
     <appender-ref ref="ALL_LOG_FILE" />
   </root>
 
-  <logger name="edge" level="DEBUG"/>
+  <logger name="sback" level="DEBUG"/>
   <logger name="juxt.kick" level="DEBUG"/>
 
   <!-- Log messages from your application will be included in
@@ -126,4 +126,19 @@
   <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
     <resetJUL>true</resetJUL>
   </contextListener>
+=======
+<configuration scan="true" scanPeriod="5 seconds">
+  <appender name="STDOUT"
+  class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} %highlight(%-5level) %cyan(%logger{5}@[%-4.30thread]) - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <root level="DEBUG">
+    <appender-ref ref="STDOUT" />
+  </root>
+  <logger name="org.apache.kafka" level="WARN" />
+  <logger name="org.apache.http" level="DEBUG" />
+  <logger name="io.netty" level="DEBUG" />
+  <logger name="user" level="DEBUG" />
 </configuration>
