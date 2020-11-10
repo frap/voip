@@ -8,8 +8,16 @@
     [clojure.repl :refer [apropos dir doc find-doc pst source]]
     [clojure.tools.namespace.repl :refer [refresh refresh-all]]
     [voip.core.kernel :as kernel]
-    [voip.core.util :as util]))
+    [voip.core.util :as util]
+    [alexandermann.unclogging :refer [merge-config!]]))
 
+
+(defn set-logging!
+  "Sets logging level for all java based on config
+  log-config is map with key :level aka {:level :info}"
+  [log-config]
+  (merge-config! log-config)
+  )
 
 (def args [])
 
@@ -18,8 +26,9 @@
 (defn init
   "Creates and initialises the system under development in the Var
   #'system."
-  []
-  (let [server-args ["server" "9000"]
+  [config]
+  (let [logging-db  (set-logging! config)
+        server-args ["server" "9000"]
         client-args ["client" "localhost" "9000" (str (util/aquire-port (into '() (map #(+ 9001 %) (range 3)))))]]
     (alter-var-root #'repl-instance (constantly
                                       (do

@@ -1,16 +1,18 @@
 (ns voip.core.client
-  (:require [manifold.stream :as s]
-            [aleph.udp :as udp]
-            [aleph.tcp :as tcp]
-            [voip.core.util :as util]
-            [voip.core.comms :as comms]
-            [voip.core.state :as state]
-            [voip.core.peer :as peer]
-            [voip.core.channel :as channel]
-            [clojure.core.match :refer [match]]
-            [clojure.string :as str]
-            [voip.core.audio :as audio])
-  (:import (java.net InetAddress)))
+  (:require 
+   [voip.core.util :as util]
+   [voip.core.comms :as comms]
+   [voip.core.state :as state]
+   [voip.core.peer :as peer]
+   [voip.core.channel :as channel]
+   [clojure.core.match :refer [match]]
+   [clojure.string :as str]
+   [voip.core.audio :as audio]
+   [manifold.stream :as s]
+   [aleph.udp :as udp]
+   [aleph.tcp :as tcp])
+  (:import (java.net InetAddress))
+  )
 
 
 
