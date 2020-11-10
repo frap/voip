@@ -90,6 +90,7 @@
   (try
     (kernel/stop repl-instance)
     (catch Exception e))
+
   (alter-var-root #'repl-instance (constantly nil)))
 
 (defn go
